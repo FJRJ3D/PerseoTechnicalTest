@@ -27,6 +27,7 @@ public class WebConfigSecurity {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/api/user/putOwner/{idUser}/course/{idCourse}").permitAll()
+                                .requestMatchers("/api/user/addCourse/{idCourse}").permitAll()
                                 .requestMatchers("/api/user/get").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/test/all").permitAll()

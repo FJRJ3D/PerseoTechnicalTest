@@ -2,7 +2,9 @@ package com.example.PerseoTechnicalTest.controller;
 
 import com.example.PerseoTechnicalTest.model.User;
 import com.example.PerseoTechnicalTest.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -44,5 +46,13 @@ public class UserController {
     @PutMapping(path = "/putOwner/{idUser}/course/{idCourse}")
     public User updateCourseOwner(@PathVariable Long idCourse, @PathVariable Long idUser){
         return userService.updateCourseOwner(idCourse, idUser);
+    }
+
+    @PutMapping(path = "/addCourse/{idCourse}")
+    public User addCourseToLoggedUser(@PathVariable Long idCourse){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        return userService.addCourseToLoggedUser(username, idCourse);
     }
 }

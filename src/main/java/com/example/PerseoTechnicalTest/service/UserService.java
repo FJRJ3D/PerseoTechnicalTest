@@ -48,4 +48,13 @@ public class UserService {
 
         return iUserRepository.save(user);
     }
+
+    public User addCourseToLoggedUser(String username, Long idCourse){
+        User user = iUserRepository.findByUsername(username).get();
+        Course course = iCourseRepository.findById(idCourse).get();
+
+        user.getCourses().add(course);
+
+        return iUserRepository.save(user);
+    }
 }
