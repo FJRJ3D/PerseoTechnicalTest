@@ -33,11 +33,6 @@ public class WebConfigSecurity {
                                 .requestMatchers("/api/v1/news/post").hasAuthority("ADMIN")
                                 .requestMatchers("/api/v1/news/put/**").hasAuthority("ADMIN")
                                 .requestMatchers("/api/v1/news/delete/**").hasAuthority("ADMIN")
-                                .requestMatchers("/api/v1/news/get").permitAll()
-                                .requestMatchers("/api/v1/donations/get").hasAnyAuthority("ADMIN", "USER")
-                                .requestMatchers("/api/v1/donations/put/**").hasAuthority("ADMIN")
-                                .requestMatchers("/api/v1/donations/delete/**").hasAuthority("ADMIN")
-                                .requestMatchers("/api/v1/donations/post").permitAll()
                                 .anyRequest().authenticated()
                         )
                 .sessionManagement(sessionManager ->
