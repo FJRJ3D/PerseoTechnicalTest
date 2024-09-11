@@ -1,6 +1,8 @@
 package com.example.PerseoTechnicalTest.service;
 
+import com.example.PerseoTechnicalTest.model.Course;
 import com.example.PerseoTechnicalTest.model.User;
+import com.example.PerseoTechnicalTest.repository.ICourseRepository;
 import com.example.PerseoTechnicalTest.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ public class UserService {
 
     @Autowired
     IUserRepository iUserRepository;
+
+    @Autowired
+    ICourseRepository iCourseRepository;
 
     public User createUser(User user){
         return iUserRepository.save(user);
@@ -33,5 +38,14 @@ public class UserService {
 
     public void deleteUser(Long id){
         iUserRepository.deleteById(id);
+    }
+
+    public User updateCourseOwner(Long idCourse, Long idUser){
+        User user = iUserRepository.findById(idUser).get();
+        Course course = iCourseRepository.findById(idCourse).get();
+
+        user.getCourses().add(course);
+
+        return iUserRepository.save(user);
     }
 }

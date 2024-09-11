@@ -26,6 +26,8 @@ public class WebConfigSecurity {
                         csrf.disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
+                                .requestMatchers("/api/user/putOwner/{idUser}/course/{idCourse}").permitAll()
+                                .requestMatchers("/api/user/get").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/test/all").permitAll()
                                 .requestMatchers("/api/test/user").hasAnyAuthority("ADMIN", "USER")
