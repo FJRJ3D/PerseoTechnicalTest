@@ -59,6 +59,22 @@ public class User implements UserDetails {
         return true;
     }
 
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Experience> experiences;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Education> educations;
+
     @ManyToMany
     @JoinTable(
             name = "user_course",
