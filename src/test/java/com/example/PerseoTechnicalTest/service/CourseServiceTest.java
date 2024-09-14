@@ -56,10 +56,27 @@ class CourseServiceTest {
 
     @Test
     void test_update_course() {
+        when(iCourseRepository.save(any(Course.class))).thenReturn(courseJava);
+
+        courseJava.setCourseName("Kubernetes Course");
+        courseJava.setCourseDescription("Course about Kubernetes");
+        Course result = courseService.updateCourse(courseJava, courseJava.getId());
+
+        assertEquals(1, result.getId());
+        assertEquals("Kubernetes Course", result.getCourseName());
+        assertEquals("Course about Kubernetes", result.getCourseDescription());
+        assertTrue(result.isStatus());
     }
 
     @Test
     void test_get_all_courses() {
+        when(iCourseRepository.findAll()).thenReturn(courseList);
+
+        List <Course> result = courseService.getAllCourses();
+
+        assertEquals(2, result.size());
+        assertEquals("Java Course", result.get(0).getCourseName());
+        assertEquals("Course about Java and POO", result.get(0).getCourseDescription());
     }
 
     @Test
