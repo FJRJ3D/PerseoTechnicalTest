@@ -14,8 +14,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -60,7 +60,7 @@ class CourseControllerTest {
     void test_create_course()throws Exception {
         when(courseService.createCourse(any(Course.class))).thenReturn(courseJava);
 
-        String courseJava =
+        String courseJavaJson =
                 "{\n" +
                         "        \"id\": 1,\n" +
                         "        \"courseName\": \"Java Course\",\n" +
@@ -69,7 +69,7 @@ class CourseControllerTest {
                         "    }";
 
         mockController
-                .perform(post("/api/course/post").contentType(MediaType.APPLICATION_JSON).content(courseJava))
+                .perform(post("/api/course/post").contentType(MediaType.APPLICATION_JSON).content(courseJavaJson))
                 .andExpect(status().isOk())
                 .andExpect(
                         content()
@@ -82,18 +82,18 @@ class CourseControllerTest {
     }
 
     @Test
-    void test_update_course() {
+    void test_update_course() throws Exception {
     }
 
     @Test
-    void test_get_all_courses() {
+    void test_get_all_courses() throws Exception {
     }
 
     @Test
-    void test_get_course_by_id() {
+    void test_get_course_by_id()throws Exception {
     }
 
     @Test
-    void test_delete_course() {
+    void test_delete_course() throws Exception{
     }
 }
