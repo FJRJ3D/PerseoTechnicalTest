@@ -27,17 +27,17 @@ public class CourseController {
     }
 
     @GetMapping(path = "/get")
-    public ArrayList<Course> getAllUsers(){
+    public ArrayList<Course> getAllCourses(){
         return courseService.getAllCourses();
     }
 
     @GetMapping(path = "/get/{id}")
-    public Optional<Course> getUserById(@PathVariable Long id){
+    public Optional<Course> getCourseById(@PathVariable Long id){
         return courseService.getCourseById(id);
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public void deleteUser(@PathVariable Long id){
+    public void deleteCourse(@PathVariable Long id){
         courseService.deleteCourse(id);
     }
 }
