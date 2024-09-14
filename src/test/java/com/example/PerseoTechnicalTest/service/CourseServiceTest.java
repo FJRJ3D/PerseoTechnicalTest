@@ -10,10 +10,11 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class CourseServiceTest {
     @Mock private ICourseRepository iCourseRepository;
@@ -77,13 +78,27 @@ class CourseServiceTest {
         assertEquals(2, result.size());
         assertEquals("Java Course", result.get(0).getCourseName());
         assertEquals("Course about Java and POO", result.get(0).getCourseDescription());
+        assertTrue(result.get(0).isStatus());
     }
 
     @Test
     void test_get_course_by_id() {
+        when(iCourseRepository.findById(any(Long.class))).thenReturn(Optional.of(courseDocker));
+
+        Optional<Course> result = courseService.getCourseById(1L);
+
+        assertEquals(2, result.get().getId());
+        assertEquals("Docker Course", result.get().getCourseName());
+        assertEquals("Course about how apply Docker", result.get().getCourseDescription());
+        assertFalse(result.get().isStatus());
     }
 
     @Test
     void test_delete_course() {
+        doNothing().when(iCourseRepository).deleteById(any(Long.class));
+
+        courseService.deleteCourse(1L);
+
+        verify(iCourseRepository, times(1)).deleteById(1L);
     }
 }
