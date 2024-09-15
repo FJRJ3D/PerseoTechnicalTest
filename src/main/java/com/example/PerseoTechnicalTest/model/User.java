@@ -82,6 +82,5 @@ public class User implements UserDetails {
             name = "user_course",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
-    @JsonManagedReference
     private Set<Course> courses;
 }

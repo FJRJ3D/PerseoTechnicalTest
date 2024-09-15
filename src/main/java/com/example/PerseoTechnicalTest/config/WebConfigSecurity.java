@@ -26,6 +26,10 @@ public class WebConfigSecurity {
                         csrf.disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
+                                .requestMatchers("/api/experience/post").permitAll()
+                                .requestMatchers("/api/experience/get").permitAll()
+                                .requestMatchers("/api/user/addEducation").permitAll()
+                                .requestMatchers("/api/user/addExperience").permitAll()
                                 .requestMatchers("/api/user/putOwner/{idUser}/course/{idCourse}").permitAll()
                                 .requestMatchers("/api/user/addCourse/{idCourse}").permitAll()
                                 .requestMatchers("/api/user/get").permitAll()

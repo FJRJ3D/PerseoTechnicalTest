@@ -1,5 +1,7 @@
 package com.example.PerseoTechnicalTest.controller;
 
+import com.example.PerseoTechnicalTest.model.Education;
+import com.example.PerseoTechnicalTest.model.Experience;
 import com.example.PerseoTechnicalTest.model.User;
 import com.example.PerseoTechnicalTest.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -54,5 +56,21 @@ public class UserController {
         String username = authentication.getName();
 
         return userService.addCourseToLoggedUser(username, idCourse);
+    }
+
+    @PostMapping(path = "/addExperience")
+    public User addExperienceToLoggedUser(@RequestBody Experience experience){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        return userService.addExperienceToLoggedUser(username, experience);
+    }
+
+    @PostMapping(path = "/addEducation")
+    public User addEducationToLoggedUser(@RequestBody Education education){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        return userService.addEducationToLoggedUser(username, education);
     }
 }
