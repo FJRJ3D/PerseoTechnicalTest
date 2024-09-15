@@ -75,7 +75,9 @@ public class User implements UserDetails {
     @JsonManagedReference
     private Set<Education> educations;
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_course",
             joinColumns = @JoinColumn(name = "user_id"),

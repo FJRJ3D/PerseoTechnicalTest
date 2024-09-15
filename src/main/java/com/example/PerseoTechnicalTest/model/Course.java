@@ -30,7 +30,7 @@ public class Course {
     @Column
     private boolean status;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<User> users;
 }
