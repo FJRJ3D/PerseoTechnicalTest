@@ -21,8 +21,6 @@ This project uses Spring Boot for the backend and MySQL for database management.
 - **MySQL**
 - **Hibernate** (JPA for database persistence)
 - **Lombok**
-- **Docker** (for containerization)
-- **GitHub Actions** (CI/CD integration)
 
 ## Features
 - **User Management**: Create, update, and delete user profiles.
